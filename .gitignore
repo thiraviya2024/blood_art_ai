@@ -13,3 +13,4 @@ output.jpg
 
 # IDE
 .vscode/
+venv/ 
