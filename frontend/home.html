@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BloodArt World Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#upload">Upload</a></li>
+      <li><a href="index.html">Exit</a></li>
+    </ul>
+  </nav>
+  <section id="home">
+    <h2>Home</h2>
+    <p>Welcome to the home of blood art transformations.</p>
+  </section>
+  <section id="about">
+    <h2>About</h2>
+    <p>This app turns your photos into vibrant blood art portraits with colorful backgrounds and flowers.</p>
+  </section>
+  <section id="upload">
+    <h2>Upload Image</h2>
+    <input type="file" id="imageUpload">
+    <button onclick="uploadImage()">Generate Blood Art</button>
+    <div id="result"></div>
+  </section>
+  <script>
+    function uploadImage() {
+      const file = document.getElementById('imageUpload').files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        fetch('http://127.0.0.1:5000/api/transform', { method: 'POST', body: formData })
+          .then(response => response.blob())
+          .then(blob => {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(blob);
+            document.getElementById('result').appendChild(img);
+          })
+          .catch(error => console.error('Error:', error));
+      }
+    }
+  </script>
+</body>
+</html>

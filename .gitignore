@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Models & outputs (optional, can upload separately)
+*.pth
+output.jpg
+
+# IDE
+.vscode/
